@@ -19,7 +19,6 @@
     kwaiq.track('contentView')
     </script>
 
-    <!-- Tailwind config (mantido) -->
     <script>
         tailwind.config = {
             theme: {
@@ -78,7 +77,7 @@
         
         <main class="flex-grow container mx-auto px-4 py-8">
             <div id="quizContainer" class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden fade-in">
-                <!-- step0 -->
+                <!-- Step 0: Welcome -->
                 <div id="step0" class="p-8">
                     <div class="text-center mb-8">
                         <h2 class="text-2xl md:text-3xl font-bold text-secondary mb-2">DESCOMPLICAMOS O EMPRÉSTIMO</h2>
@@ -110,7 +109,7 @@
                     </div>
                 </div>
                 
-                <!-- step1 -->
+                <!-- Step 1: Nome Completo -->
                 <div id="step1" class="hidden p-8">
                     <div class="mb-6">
                         <div class="flex items-center mb-2">
@@ -138,7 +137,7 @@
                     </div>
                 </div>
                 
-                <!-- step2 -->
+                <!-- Step 2: CPF -->
                 <div id="step2" class="hidden p-8">
                     <div class="mb-6">
                         <div class="flex items-center mb-2">
@@ -170,7 +169,7 @@
                     </div>
                 </div>
                 
-                <!-- step3 -->
+                <!-- Step 3: Telefone -->
                 <div id="step3" class="hidden p-8">
                     <div class="mb-6">
                         <div class="flex items-center mb-2">
@@ -198,7 +197,7 @@
                     </div>
                 </div>
                 
-                <!-- step4 -->
+                <!-- Step 4: Valor Desejado -->
                 <div id="step4" class="hidden p-8">
                     <div class="mb-6">
                         <div class="flex items-center mb-2">
@@ -209,12 +208,12 @@
                     </div>
                     
                     <div class="md:ml-10 mb-6 grid grid-cols-2 gap-4">
-                        <button onclick="selectValue(5000)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 5.000</button>
-                        <button onclick="selectValue(10000)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 10.000</button>
-                        <button onclick="selectValue(20000)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 20.000</button>
-                        <button onclick="selectValue(30000)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 30.000</button>
-                        <button onclick="selectValue(50000)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 50.000</button>
-                        <button onclick="showCustomValue()" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">Outro valor</button>
+                        <button onclick="selectValue(5000, event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 5.000</button>
+                        <button onclick="selectValue(10000, event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 10.000</button>
+                        <button onclick="selectValue(20000, event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 20.000</button>
+                        <button onclick="selectValue(30000, event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 30.000</button>
+                        <button onclick="selectValue(50000, event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">R$ 50.000</button>
+                        <button onclick="showCustomValue(event)" class="value-btn bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 font-bold py-4 px-4 rounded-lg transition duration-300">Outro valor</button>
                     </div>
                     
                     <div id="customValueContainer" class="md:ml-10 mb-6 hidden">
@@ -238,7 +237,7 @@
                     </div>
                 </div>
                 
-                <!-- step5 -->
+                <!-- Step 5: Loading -->
                 <div id="step5" class="hidden p-8">
                     <div class="text-center py-12">
                         <div class="loading-spinner mx-auto mb-8"></div>
@@ -247,7 +246,7 @@
                     </div>
                 </div>
                 
-                <!-- step6 -->
+                <!-- Step 6: Result -->
                 <div id="step6" class="hidden p-8">
                     <div class="text-center py-8">
                         <div class="bg-success-light text-success rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
@@ -305,8 +304,8 @@
             valor: 0
         };
 
-        // ⛳ TROQUE AQUI PELA SUA URL DE IMPLANTAÇÃO (Apps Script > Implantar > Aplicativo da Web)
-        const SCRIPT_URL ='https://script.google.com/macros/s/AKfycbwrf7cnXXXlnt4cm76PwSbLTMPSmNj-Mq_gbF4nygBVbd7-61iQ-wK-bslIRzKbcoIV/exec';
+        // ✅ URL CORRETA E FUNCIONAL INSERIDA AQUI
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwI9pEcJOVRx2fKns5JGX8eQXSa0p_R_DpA3neklTGIECumU4EEPc8pkvf_11BVi_R4/exec';
 
         function testaCPF(strCPF) {
             let Soma;
@@ -409,28 +408,22 @@
             }
         }
         
-        function selectValue(value) {
+        function selectValue(value, event) {
             selectedValue = value;
             $('#btnStep4').prop('disabled', false);
             $('#feedback4').removeClass('hidden');
             
-            // Mantém o comportamento original, mas mais resiliente
             $('.value-btn').removeClass('bg-primary text-white border-primary').addClass('bg-white text-gray-800 border-gray-300');
-            const tgt = window.event && window.event.currentTarget ? window.event.currentTarget : null;
-            if (tgt) {
-                $(tgt).removeClass('bg-white text-gray-800 border-gray-300').addClass('bg-primary text-white border-primary');
-            }
+            $(event.currentTarget).removeClass('bg-white text-gray-800 border-gray-300').addClass('bg-primary text-white border-primary');
+
             $('#customValueContainer').addClass('hidden');
             $('#customValue').val('');
         }
         
-        function showCustomValue() {
+        function showCustomValue(event) {
             $('#customValueContainer').removeClass('hidden').find('input').focus();
             $('.value-btn').removeClass('bg-primary text-white border-primary').addClass('bg-white text-gray-800 border-gray-300');
-            const tgt = window.event && window.event.currentTarget ? window.event.currentTarget : null;
-            if (tgt) {
-                $(tgt).addClass('bg-primary text-white border-primary');
-            }
+            $(event.currentTarget).addClass('bg-primary text-white border-primary');
             $('#btnStep4').prop('disabled', true);
             $('#feedback4').addClass('hidden');
             selectedValue = 0;
@@ -466,7 +459,6 @@
             clearInterval(loadingInterval);
         }
         
-        // SUBMISSÃO (corrigida)
         async function submitQuiz() {
             userData.valor = selectedValue;
             const submitButton = $('#btnStep4');
@@ -488,7 +480,6 @@
                     body: JSON.stringify(userData)
                 });
 
-                // Pode lançar se não vier JSON válido
                 const result = await response.json();
                 stopLoadingMessages();
 
@@ -539,3 +530,4 @@
     </script>
 </body>
 </html>
+
