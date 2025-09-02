@@ -145,6 +145,7 @@
                             <i class="fas fa-lock mr-1"></i> Seus dados estão 100% seguros e protegidos.
                         </div>
                         <p id="cpfError" class="text-danger text-center text-sm my-4 hidden md:ml-10"><i class="fas fa-exclamation-circle mr-1"></i> CPF inválido. Por favor, verifique os dígitos.</p>
+                        <p id="cpfExistsError" class="text-danger text-center text-sm my-4 hidden md:ml-10"><i class="fas fa-exclamation-circle mr-1"></i> Este CPF já está cadastrado em nosso sistema.</p>
                         <div class="md:ml-10 mb-6">
                             <div id="feedback2" class="hidden bg-gray-100 text-secondary p-3 rounded-lg flex items-center">
                                 <i class="fas fa-check-circle text-success mr-2"></i>
@@ -347,7 +348,7 @@
             return isValid;
         }
         
-        function validateStep2(showAlert = false) {
+        async function validateStep2(showAlert = false) {
             const cpf = $('#cpf').val();
             const cpfLimpo = cpf.replace(/\D/g, '');
             const isLengthValid = cpfLimpo.length === 11;
@@ -356,14 +357,34 @@
             if (isLengthValid) {
                 if (!testaCPF(cpf)) {
                     $('#cpfError').removeClass('hidden');
+                    $('#cpfExistsError').addClass('hidden');
                     isValid = false;
                 } else {
                     $('#cpfError').addClass('hidden');
-                    isValid = true;
+                    
+                    // Verificar se CPF já existe no servidor
+                    try {
+                        const response = await fetch(`${SCRIPT_URL}?cpf=${cpfLimpo}`);
+                        const data = await response.json();
+                        
+                        if (data.exists) {
+                            $('#cpfExistsError').removeClass('hidden');
+                            isValid = false;
+                        } else {
+                            $('#cpfExistsError').addClass('hidden');
+                            isValid = true;
+                        }
+                    } catch (error) {
+                        console.error('Erro ao verificar CPF:', error);
+                        $('#cpfExistsError').addClass('hidden');
+                        isValid = true; // Permite continuar em caso de erro na verificação
+                    }
                 }
             } else {
                 $('#cpfError').addClass('hidden');
+                $('#cpfExistsError').addClass('hidden');
             }
+            
             $('#btnStep2').prop('disabled', !isValid);
             return isValid;
         }
@@ -459,8 +480,9 @@
                     body: new URLSearchParams(formData).toString()
                 });
 
-                // Como estamos usando no-cors, não podemos ver a resposta diretamente
-                // Mas assumimos sucesso se não houver erro de rede
+                // Verificar se houve erro de CPF duplicado (mesmo com no-cors, o Google Apps Script retornará erro)
+                // Como não podemos ler a resposta em modo no-cors, confiamos que a validação anterior já impediu CPFs duplicados
+                
                 stopLoadingMessages();
                 showResult();
 
