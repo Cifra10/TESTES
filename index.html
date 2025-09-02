@@ -292,23 +292,34 @@
     
     <!-- Modal Prestamista -->
     <div id="prestamistaModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-8 text-center relative animate-fade-in-scale">
-            <button onclick="closePrestamistaPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl">&times;</button>
-            <h3 class="text-2xl font-bold text-secondary mb-4">Aviso Importante</h3>
-            <p class="text-gray-600 text-left mb-6 space-y-2">
-                <strong>Parabéns!</strong> O valor do seu crédito foi aprovado pela nossa empresa.
-                <br><br>
-                Porém, é necessária a contratação do <strong>seguro prestamista</strong>. O seguro prestamista é um tipo de proteção financeira que garante o pagamento de empréstimos e financiamentos em caso de imprevistos, como: morte, invalidez total ou parcial, perda de rendimentos por desempregos, ou doenças que incapacitem o segurado de exercer suas funções profissionais.
-                <br><br>
-                O seguro prestamista é uma ferramenta que protege tanto credores quanto devedores, evitando inadimplências e as consequências negativas para o segurado e sua família.
-                <br><br>
-                O custo do seguro prestamista varia de acordo com: o valor do financiamento ou empréstimo, a idade do segurado e as coberturas incluídas na apólice. O seguro Prestamista tem por objetivo garantir a quitação ou amortização do saldo devedor, até o limite do respectivo Capital Segurado, oriundo de crédito e/ou aquisições contratadas junto ao Estipulante ou Subestipulante.
-                <br><br>
-                A indenização poderá ser decorrente...
-            </p>
-            <button id="saqueBtn" class="w-full bg-success hover:bg-success-dark text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
-                <i class="fas fa-money-check-alt mr-2"></i> Efetuar Saque
-            </button>
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full flex flex-col max-h-[90vh] animate-fade-in-scale">
+            <!-- Cabeçalho do Modal -->
+            <div class="p-6 border-b relative">
+                <h3 class="text-xl sm:text-2xl font-bold text-secondary text-center">Aviso Importante</h3>
+                <button onclick="closePrestamistaPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            
+            <!-- Conteúdo com scroll -->
+            <div class="p-6 overflow-y-auto">
+                <p class="text-gray-600 text-left text-sm sm:text-base space-y-4">
+                    <strong>Parabéns!</strong> O valor do seu crédito foi aprovado pela nossa empresa.
+                    <br><br>
+                    Porém, é necessária a contratação do <strong>seguro prestamista</strong>. O seguro prestamista é um tipo de proteção financeira que garante o pagamento de empréstimos e financiamentos em caso de imprevistos, como: morte, invalidez total ou parcial, perda de rendimentos por desempregos, ou doenças que incapacitem o segurado de exercer suas funções profissionais.
+                    <br><br>
+                    O seguro prestamista é uma ferramenta que protege tanto credores quanto devedores, evitando inadimplências e as consequências negativas para o segurado e sua família.
+                    <br><br>
+                    O custo do seguro prestamista varia de acordo com: o valor do financiamento ou empréstimo, a idade do segurado e as coberturas incluídas na apólice. O seguro Prestamista tem por objetivo garantir a quitação ou amortização do saldo devedor, até o limite do respectivo Capital Segurado, oriundo de crédito e/ou aquisições contratadas junto ao Estipulante ou Subestipulante.
+                    <br><br>
+                    A indenização poderá ser decorrente...
+                </p>
+            </div>
+            
+            <!-- Rodapé do Modal com Botão -->
+            <div class="p-6 border-t">
+                 <button id="saqueBtn" class="w-full bg-success hover:bg-success-dark text-white font-bold py-3 sm:py-4 rounded-full text-base sm:text-lg transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-money-check-alt mr-2"></i> Efetuar Saque
+                </button>
+            </div>
         </div>
     </div>
 
@@ -550,3 +561,4 @@
     </script>
 </body>
 </html>
+
